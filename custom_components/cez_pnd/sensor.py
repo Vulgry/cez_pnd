@@ -327,7 +327,7 @@ class CezPndCoordinator(DataUpdateCoordinator[dict[str, Any]]):
         await self._async_save_store()
 
         duration = round(time.time() - start_time, 2)
-        _LOGGER.warning(
+        _LOGGER.debug(
             "CEZ PND DEBUG:\n"
             "duration: %ss\n"
             "logins: %s\n"
