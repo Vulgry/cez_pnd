@@ -1,0 +1,32 @@
+{
+  "config": {
+    "error": {
+      "login_failed": "Přihlášení se nezdařilo"
+    },
+    "step": {
+      "user": {
+        "title": "Přihlášení",
+        "data": {
+          "username": "E-mail",
+          "password": "Heslo"
+        }
+      },
+      "select_meter": {
+        "title": "Výběr elektroměru",
+        "data": {
+          "electrometer_id": "Elektroměr"
+        }
+      }
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "Volby",
+        "data": {
+          "history_months": "Počet měsíců historie"
+        }
+      }
+    }
+  }
+}

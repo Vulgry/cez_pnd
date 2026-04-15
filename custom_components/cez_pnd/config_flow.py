@@ -23,7 +23,7 @@ class CezPndFlow(config_entries.ConfigFlow, domain=DOMAIN):
     def async_get_options_flow(config_entry: config_entries.ConfigEntry):
         """Vrátí options flow handler."""
         from .options_flow import CezPndOptionsFlowHandler
-        return CezPndOptionsFlowHandler(config_entry)
+        return CezPndOptionsFlowHandler()
 
     async def async_step_user(self, user_input=None):
         if user_input is None:

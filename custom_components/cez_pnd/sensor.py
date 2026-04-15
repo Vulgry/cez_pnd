@@ -452,13 +452,9 @@ class CezPndLastYearSensor(_BaseCezPndSensor):
 
 
 class CezPndHistorySensor(_BaseCezPndSensor):
+    _attr_name = "ČEZ PND – Historie spotřeby"
     _attr_unique_id = "cez_pnd_historie_mesicu"
-
-    @property
-    def name(self) -> str:
-        data = self.coordinator.data or {}
-        hm = data.get("history_months", self.coordinator.history_months)
-        return f"ČEZ PND – Historie za {hm} měsíců"
+    _attr_state_class = SensorStateClass.MEASUREMENT
 
     @property
     def native_value(self) -> float | None:
@@ -475,6 +471,10 @@ class CezPndHistorySensor(_BaseCezPndSensor):
 
         rounded_history = {k: round(float(v), 3) for k, v in history.items()}
 
+        sorted_keys_desc = sorted(rounded_history.keys(), reverse=True)
+        history_to = sorted_keys_desc[0] if sorted_keys_desc else None
+        history_from = sorted_keys_desc[-1] if sorted_keys_desc else None
+
         years = sorted(
             {key.split("-")[0] for key in rounded_history.keys()},
             reverse=True,
@@ -483,15 +483,27 @@ class CezPndHistorySensor(_BaseCezPndSensor):
         rows_by_year: list[dict[str, Any]] = []
 
         for year in years:
-            row: dict[str, Any] = {"year": year}
-            for month in range(1, 13):
-                mm = f"{month:02d}"
-                key = f"{year}-{mm}"
-                row[mm] = rounded_history.get(key, "-")
+            row: dict[str, Any] = {
+                "year": year,
+                "month_01": rounded_history.get(f"{year}-01", "-"),
+                "month_02": rounded_history.get(f"{year}-02", "-"),
+                "month_03": rounded_history.get(f"{year}-03", "-"),
+                "month_04": rounded_history.get(f"{year}-04", "-"),
+                "month_05": rounded_history.get(f"{year}-05", "-"),
+                "month_06": rounded_history.get(f"{year}-06", "-"),
+                "month_07": rounded_history.get(f"{year}-07", "-"),
+                "month_08": rounded_history.get(f"{year}-08", "-"),
+                "month_09": rounded_history.get(f"{year}-09", "-"),
+                "month_10": rounded_history.get(f"{year}-10", "-"),
+                "month_11": rounded_history.get(f"{year}-11", "-"),
+                "month_12": rounded_history.get(f"{year}-12", "-"),
+            }
             rows_by_year.append(row)
 
         return {
             "history": rounded_history,
             "history_months": hm,
+            "history_from": history_from,
+            "history_to": history_to,
             "rows_by_year": rows_by_year,
         }

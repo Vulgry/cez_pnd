@@ -1,0 +1,32 @@
+{
+  "config": {
+    "error": {
+      "login_failed": "Login failed"
+    },
+    "step": {
+      "user": {
+        "title": "Login",
+        "data": {
+          "username": "Email",
+          "password": "Password"
+        }
+      },
+      "select_meter": {
+        "title": "Select meter",
+        "data": {
+          "electrometer_id": "Meter"
+        }
+      }
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "Options",
+        "data": {
+          "history_months": "History months"
+        }
+      }
+    }
+  }
+}
