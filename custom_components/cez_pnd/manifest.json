@@ -1,7 +1,7 @@
 {
   "domain": "cez_pnd",
   "name": "ČEZ PND (neoficiální)",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "config_flow": true,
   "documentation": "https://example.com/cez_pnd",
   "requirements": [
