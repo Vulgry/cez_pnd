@@ -1,0 +1,16 @@
+{
+  "domain": "cez_pnd",
+  "name": "ČEZ PND (neoficiální)",
+  "version": "1.0.1",
+  "config_flow": true,
+  "documentation": "https://example.com/cez_pnd",
+  "requirements": [
+    "requests>=2.25.0"
+  ],
+  "codeowners": ["@Vulgry"],
+  "iot_class": "cloud_polling",
+  "loggers": ["custom_components.cez_pnd"],
+  "integration_type": "hub",
+  "platforms": ["sensor"],
+  "quality_scale": "silver"
+}
