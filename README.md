@@ -1,8 +1,8 @@
 # ⚡ ČEZ PND (neoficiální) – Home Assistant integrace
 
-[![HACS](https://img.shields.io/badge/HACS-Custom-orange.svg)](https://github.com/hacs/integration)
-[![GitHub release](https://img.shields.io/github/v/release/Vulgry/cez_pnd)](https://github.com/Vulgry/cez_pnd/releases)
-[![License](https://img.shields.io/github/license/Vulgry/cez_pnd)](LICENSE)
+[![HACS](https://img.shields.io/badge/HACS-Custom-orange.svg?style=for-the-badge)](https://github.com/hacs/integration)
+[![Version](https://img.shields.io/github/v/release/Vulgry/cez_pnd?style=for-the-badge)](https://github.com/Vulgry/cez_pnd/releases)
+[![License](https://img.shields.io/github/license/Vulgry/cez_pnd?style=for-the-badge)](LICENSE)
 
 Neoficiální integrace pro načítání spotřeby elektroměru z portálu **ČEZ PND** do Home Assistantu.
 
@@ -130,10 +130,7 @@ Integrace je kompatibilní s Home Assistant Energy Dashboardem.
 
 Pokud ti integrace pomohla, můžeš mě podpořit:
 
+[![Buy me a coffee](https://img.shields.io/badge/Buy_me_a_coffee-Odměň_mě_kávou-yellow?style=for-the-badge&logo=buy-me-a-coffee&logoColor=black)](https://buymeacoffee.com/Vulgry)
+
 https://buymeacoffee.com/Vulgry
 
----
-
-## 📜 Licence
-
-MIT
