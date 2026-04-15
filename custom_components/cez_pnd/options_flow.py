@@ -5,8 +5,6 @@ import voluptuous as vol
 from homeassistant import config_entries
 from homeassistant.core import callback
 
-from .const import DOMAIN
-
 
 class CezPndOptionsFlowHandler(config_entries.OptionsFlow):
     """Options flow pro ČEZ PND."""
@@ -23,7 +21,10 @@ class CezPndOptionsFlowHandler(config_entries.OptionsFlow):
             if preset != "custom":
                 history_months = int(preset)
             else:
-                history_months = int(custom_val or 24)
+                try:
+                    history_months = int(custom_val)
+                except (TypeError, ValueError):
+                    history_months = 24
 
             history_months = max(1, min(history_months, 120))
 
@@ -32,7 +33,7 @@ class CezPndOptionsFlowHandler(config_entries.OptionsFlow):
                 data={"history_months": history_months},
             )
 
-        current = int(self.config_entry.options.get("history_months", 24))
+        current = int(self.config_entry.options.get("history_months", 24) or 24)
 
         preset_values = [12, 24, 36, 48, 60, 72, 84, 96, 108, 120]
 
@@ -59,14 +60,9 @@ class CezPndOptionsFlowHandler(config_entries.OptionsFlow):
                     }
                 ),
                 vol.Optional("history_months", default=current): vol.All(
-                    int, vol.Range(min=1, max=120)
+                    vol.Coerce(int), vol.Range(min=1, max=120)
                 ),
             }
         )
 
         return self.async_show_form(step_id="init", data_schema=schema, errors={})
-
-    @staticmethod
-    @callback
-    def async_get_options_flow(config_entry: config_entries.ConfigEntry):
-        return CezPndOptionsFlowHandler(config_entry)
