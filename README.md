@@ -1,152 +1,132 @@
-ČEZ PND (neoficiální) – Home Assistant integrace
+# ⚡ ČEZ PND (neoficiální) – Home Assistant integrace
 
+Neoficiální integrace pro načítání spotřeby elektroměru z portálu **ČEZ PND**.
 
+---
 
-⚡ Neoficiální integrace pro načítání spotřeby elektroměru z portálu ČEZ PND
+## ✨ Funkce
 
-Pomocí této integrace můžete v Home Assistantu sledovat:
+Integrace umožňuje sledovat:
 
+- 📅 **Spotřebu dnes**
+- 📆 **Spotřebu tento měsíc**
+- 📈 **Spotřebu za tento a minulý rok**
+- 🗂 **Historii spotřeby až 24 měsíců (po měsících)**
+- ⚙️ **Automatickou detekci elektroměrů z PND**
 
+---
 
-📅 dnešní spotřebu
+## 📦 Instalace
 
+### 🔹 HACS (doporučeno)
 
+1. Otevři **HACS**
+2. Klikni na **⋮ → Custom repositories**
+3. Přidej:
 
-📆 měsíční spotřebu
+https://github.com/Vulgry/cez_pnd
 
+4. Typ: **Integration**
+5. Nainstaluj integraci
+6. Restartuj Home Assistant
 
+---
 
-📈 spotřebu za tento a minulý rok
+### 🔹 Ruční instalace
 
+1. Stáhni složku `cez_pnd`
+2. Zkopíruj ji do:
 
+/config/custom_components/cez_pnd
 
-🗂 historii za posledních až 24 měsíců
+3. Restartuj Home Assistant
 
+---
 
+## ⚙️ Konfigurace
 
-⚙ automatickou detekci dostupných elektroměrů z PND
-
-
-
-podporu Energy Dashboardu (HA Energy)
-
-
-
-🛠 Instalace
-
-1\) Ruční instalace
-
-
-
-Stáhněte složku cez\_pnd
-
-
-
-Zkopírujte ji do:
-
-
-
-/config/custom\_components/cez\_pnd
-
-
-
-
-
-Restartujte Home Assistant.
-
-
-
-🔧 Konfigurace
-
-1️⃣ Přidání integrace
-
-
-
-V Home Assistant:
-
-
+### 1️⃣ Přidání integrace
 
 Nastavení → Integrace → Přidat integraci → ČEZ PND
 
+---
 
+### 2️⃣ Přihlášení
 
-2️⃣ Krok 1 – přihlášení
+Zadej:
 
+- 📧 e-mail (uživatelské jméno)
+- 🔑 heslo (login do ČEZ PND)
 
+---
 
-Zadejte:
+### 3️⃣ Výběr elektroměru
 
-
-
-e-mail (uživatelské jméno)
-
-
-
-heslo k portálu PND (CAS)
-
-
-
-3️⃣ Krok 2 – výběr elektroměru
-
-
-
-Integrace automaticky načte dostupné elektroměry, např.:
-
-
+Integrace automaticky načte dostupné elektroměry:
 
 ELM 96645
+ELM 60224447
 
-ELM 60224247
+Vyber požadovaný elektroměr a potvrď.
 
+---
 
+## 📊 Dostupné senzory
 
-Vyberte jeden a potvrďte.
+| Název | Popis |
+|------|------|
+| ČEZ PND – Spotřeba dnes | aktuální den |
+| ČEZ PND – Spotřeba včera | předchozí den |
+| ČEZ PND – Spotřeba tento měsíc | aktuální měsíc |
+| ČEZ PND – Spotřeba minulý měsíc | předchozí měsíc |
+| ČEZ PND – Spotřeba tento rok | od 1. 1. |
+| ČEZ PND – Spotřeba minulý rok | celý minulý rok |
+| ČEZ PND – Historie | atribut `history` (YYYY-MM → kWh) |
 
+---
 
+## 🔒 Bezpečnost
 
-📊 Dostupné senzory
+- přihlašovací údaje jsou uloženy v Home Assistant Config Entry
+- heslo se nikde neloguje
+- komunikace probíhá přes HTTPS (CAS login)
+- žádná data se neposílají třetím stranám
 
-Název senzoru	Popis
+---
 
-ČEZ PND – Spotřeba dnes	spotřeba za aktuální den
+## ⚠️ Omezení
 
-ČEZ PND – Spotřeba tento měsíc	součet spotřeby za aktuální měsíc
+- integrace není oficiálně podporována ČEZem
+- závisí na dostupnosti portálu PND
+- změny na straně ČEZ mohou integraci rozbít
 
-ČEZ PND – Spotřeba tento rok	spotřeba od 1. 1. daného roku
+---
 
-ČEZ PND – Spotřeba minulý rok	spotřeba za předchozí kalendářní rok
+## 🐞 Hlášení chyb / Feature request
 
-ČEZ PND – Historie za 24 měsíců	atribut s hodnotami po měsících (YYYY-MM → kWh)
+Použij:
+👉 https://github.com/Vulgry/cez_pnd/issues
 
+---
 
+## 🤝 Přispívání
 
-🔒 Bezpečnost
+Uvítáme:
 
+- pull requesty
+- bug reporty
+- návrhy funkcí
 
+---
 
-přihlašovací údaje jsou uloženy jako součást HA Config Entry
+## 📜 Licence
 
-heslo není nikde logováno
+MIT License
 
-komunikace probíhá přímo na portál ČEZ přes HTTPS (CAS login)
+---
 
-neodesílají se žádná data třetím stranám
+## ❤️ Podpora
 
+Pokud ti integrace pomohla, můžeš mě podpořit:
 
-
-🤝 Přispívání
-
-
-
-Rádi uvítáme:
-
-
-
-pull requesty
-
-hlášení chyb
-
-návrhy na rozšíření
-
-
-
+https://buymeacoffee.com/Vulgry
