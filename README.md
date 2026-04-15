@@ -130,7 +130,7 @@ Integrace je kompatibilní s Home Assistant Energy Dashboardem.
 
 Pokud ti integrace pomohla, můžeš mě podpořit:
 
-[![Buy Me a Coffee](https://img.buymeacoffee.com/button-api/?text=Buy me a coffee&slug=Vulgry&button_colour=FFDD00&font_colour=000000&outline_colour=000000&coffee_colour=ffffff)](https://buymeacoffee.com/Vulgry)
+https://buymeacoffee.com/Vulgry
 
 ---
 
