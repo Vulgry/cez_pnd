@@ -19,3 +19,10 @@ async def async_unload_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
 async def async_reload_entry(hass: HomeAssistant, entry: ConfigEntry) -> None:
     """Reload při změně options."""
     await hass.config_entries.async_reload(entry.entry_id)
+
+
+async def async_get_options_flow(config_entry: ConfigEntry):
+    """Vrátí options flow pro integraci."""
+    from .options_flow import CezPndOptionsFlowHandler
+
+    return CezPndOptionsFlowHandler(config_entry)
