@@ -2,7 +2,7 @@ from __future__ import annotations
 
 import voluptuous as vol
 from homeassistant import config_entries
-from homeassistant.core import HomeAssistant
+from homeassistant.core import callback
 
 from .const import DOMAIN
 from .api import CezPndClient
@@ -18,9 +18,13 @@ class CezPndFlow(config_entries.ConfigFlow, domain=DOMAIN):
         self._password = None
         self._device_options = None
 
-    # --------------------------------------
-    # KROK 1: EMAIL + HESLO
-    # --------------------------------------
+    @staticmethod
+    @callback
+    def async_get_options_flow(config_entry: config_entries.ConfigEntry):
+        """Vrátí options flow handler."""
+        from .options_flow import CezPndOptionsFlowHandler
+        return CezPndOptionsFlowHandler(config_entry)
+
     async def async_step_user(self, user_input=None):
         if user_input is None:
             return self.async_show_form(
@@ -36,7 +40,6 @@ class CezPndFlow(config_entries.ConfigFlow, domain=DOMAIN):
         self._username = user_input["username"]
         self._password = user_input["password"]
 
-        # otestujeme login + načteme zařízení
         try:
             client = CezPndClient(
                 self._username,
@@ -48,7 +51,7 @@ class CezPndFlow(config_entries.ConfigFlow, domain=DOMAIN):
             devices = await self.hass.async_add_executor_job(client.list_devices)
             self._device_options = devices
 
-        except Exception as e:
+        except Exception:
             return self.async_show_form(
                 step_id="user",
                 errors={"base": "login_failed"},
@@ -62,13 +65,8 @@ class CezPndFlow(config_entries.ConfigFlow, domain=DOMAIN):
 
         return await self.async_step_select_meter()
 
-    # --------------------------------------
-    # KROK 2: VÝBĚR ELEKTROMĚRU
-    # --------------------------------------
     async def async_step_select_meter(self, user_input=None):
         meters = self._device_options["electrometers"]
-
-        # vytvoříme volby např. "ELM 60228277"
         choices = {m["id"]: m["label"] for m in meters}
 
         if user_input is None:
