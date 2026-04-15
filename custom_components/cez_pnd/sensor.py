@@ -472,8 +472,26 @@ class CezPndHistorySensor(_BaseCezPndSensor):
         data = self.coordinator.data or {}
         history = data.get("history", {}) or {}
         hm = data.get("history_months", self.coordinator.history_months)
+
         rounded_history = {k: round(float(v), 3) for k, v in history.items()}
+
+        years = sorted(
+            {key.split("-")[0] for key in rounded_history.keys()},
+            reverse=True,
+        )
+
+        rows_by_year: list[dict[str, Any]] = []
+
+        for year in years:
+            row: dict[str, Any] = {"year": year}
+            for month in range(1, 13):
+                mm = f"{month:02d}"
+                key = f"{year}-{mm}"
+                row[mm] = rounded_history.get(key, "-")
+            rows_by_year.append(row)
+
         return {
             "history": rounded_history,
             "history_months": hm,
+            "rows_by_year": rows_by_year,
         }

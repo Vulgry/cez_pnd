@@ -8,34 +8,28 @@ Neoficiální integrace pro načítání spotřeby elektroměru z portálu **ČE
 
 ---
 
-## ✨ Funkce
+## Instalace přes HACS
 
-- 📅 Spotřeba dnes
-- 📆 Spotřeba včera
-- 🗓️ Spotřeba tento měsíc
-- 📉 Spotřeba minulý měsíc
-- 📈 Spotřeba tento a minulý rok
-- 🗂 Historie spotřeby po měsících
-- ⚙️ Automatická detekce elektroměrů
-- 🔋 Podpora Energy Dashboardu
+[![Open in HACS](https://my.home-assistant.io/badges/hacs_repository.svg)](https://my.home-assistant.io/redirect/hacs_repository/?repository=https://github.com/Vulgry/cez_pnd&category=integration)
 
----
+Po kliknutí na tlačítko se repozitář otevře přímo v HACS.
 
-## 📦 Instalace
+### Postup
 
-### 🔹 HACS (doporučeno)
-
-1. Otevři **HACS**
-2. Klikni na **⋮ → Custom repositories**
-3. Přidej:
-
+1. Přidej repozitář do HACS
+2. Nainstaluj integraci
 https://github.com/Vulgry/cez_pnd
 
-4. Typ: **Integration**
-5. Nainstaluj integraci
-6. Restartuj Home Assistant
+3. Restartuj Home Assistant
+4. Otevři **Nastavení → Integrace**
+5. Přidej **ČEZ PND**
 
----
+### Nastavení
+
+- zadej přihlašovací údaje do ČEZ PND
+- vyber elektroměr
+- integrace začne načítat data
+
 
 ### 🔹 Ruční instalace
 
@@ -47,7 +41,7 @@ Zkopíruj složku do:
 
 Restartuj Home Assistant.
 
----
+
 
 ## ⚙️ Konfigurace
 
@@ -68,40 +62,40 @@ Zadej:
 Integrace automaticky načte dostupné elektroměry, např.:
 
 
-ELM 96645
-ELM 60224247
+* ELM 96645
 
+* ELM 60224247
+
+
+### Nastavení historie
+
+U senzoru historie lze nastavit, kolik měsíců zpětně se má načítat.
+
+K dispozici jsou:
+
+rychlé volby po 12 měsících
+vlastní hodnota
+rozsah 1 až 120 měsíců
+
+Nastavení změníš v:
+
+Nastavení → Zařízení a služby → ČEZ PND → Konfigurovat
 
 ---
 
 ## 📊 Dostupné senzory
 
-| Senzor | Popis |
-|------|------|
-| Spotřeba dnes | aktuální den |
-| Spotřeba včera | předchozí den |
-| Spotřeba tento měsíc | aktuální měsíc |
-| Spotřeba minulý měsíc | předchozí měsíc |
-| Spotřeba tento rok | od 1. 1. |
-| Spotřeba minulý rok | celý minulý rok |
-| Historie | atribut `history` (YYYY-MM → kWh) |
 
----
+| Entita | Typ | Popis |
+|--------|-----|------|
+| `sensor.cez_pnd_spotreba_dnes` | Sensor (kWh) | Spotřeba za aktuální den |
+| `sensor.cez_pnd_vcera_spotreba` | Sensor (kWh) | Spotřeba za předchozí den |
+| `sensor.cez_pnd_spotreba_tento_mesic` | Sensor (kWh) | Spotřeba za aktuální měsíc |
+| `sensor.cez_pnd_spotreba_minuly_mesic` | Sensor (kWh) | Spotřeba za minulý měsíc |
+| `sensor.cez_pnd_spotreba_tento_rok` | Sensor (kWh) | Spotřeba od začátku roku |
+| `sensor.cez_pnd_spotreba_minuly_rok` | Sensor (kWh) | Spotřeba za celý minulý rok |
+| `sensor.cez_pnd_historie_mesicu` | Sensor (kWh) | Součet historie + atribut `history` (YYYY-MM → kWh) |
 
-## 📈 Energy Dashboard
-
-Integrace je kompatibilní s Home Assistant Energy Dashboardem.
-
----
-
-## ⚡ Výkon
-
-- 1 login na update
-- minimalizace requestů
-- cache historických dat
-- inkrementální aktualizace
-
----
 
 ## 🔒 Bezpečnost
 
@@ -131,6 +125,3 @@ Integrace je kompatibilní s Home Assistant Energy Dashboardem.
 Pokud ti integrace pomohla, můžeš mě podpořit:
 
 [![Buy me a coffee](https://img.shields.io/badge/Buy_me_a_coffee-Odměň_mě_kávou-yellow?style=for-the-badge&logo=buy-me-a-coffee&logoColor=black)](https://buymeacoffee.com/Vulgry)
-
-https://buymeacoffee.com/Vulgry
-

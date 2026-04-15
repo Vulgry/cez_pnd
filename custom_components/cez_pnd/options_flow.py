@@ -15,42 +15,50 @@ class CezPndOptionsFlowHandler(config_entries.OptionsFlow):
         self.config_entry = config_entry
 
     async def async_step_init(self, user_input=None):
-        """První (a jediný) krok options flow."""
+        """První krok options flow."""
         if user_input is not None:
             preset = user_input["history_preset"]
-            custom_val = user_input.get("history_months") or 24
+            custom_val = user_input.get("history_months")
 
             if preset != "custom":
                 history_months = int(preset)
             else:
-                history_months = int(custom_val)
+                history_months = int(custom_val or 24)
+
+            history_months = max(1, min(history_months, 120))
 
             return self.async_create_entry(
                 title="Nastavení historie",
                 data={"history_months": history_months},
             )
 
-        current = self.config_entry.options.get("history_months", 24)
+        current = int(self.config_entry.options.get("history_months", 24))
 
-        if current in (12, 24, 36, 60):
+        preset_values = [12, 24, 36, 48, 60, 72, 84, 96, 108, 120]
+
+        if current in preset_values:
             current_preset = str(current)
-            current_custom = current
         else:
             current_preset = "custom"
-            current_custom = current
 
         schema = vol.Schema(
             {
                 vol.Required("history_preset", default=current_preset): vol.In(
                     {
-                        "12": "Posledních 12 měsíců",
-                        "24": "Posledních 24 měsíců (doporučeno)",
-                        "36": "Posledních 36 měsíců",
-                        "60": "Posledních 60 měsíců",
+                        "12": "12 měsíců",
+                        "24": "24 měsíců",
+                        "36": "36 měsíců",
+                        "48": "48 měsíců",
+                        "60": "60 měsíců",
+                        "72": "72 měsíců",
+                        "84": "84 měsíců",
+                        "96": "96 měsíců",
+                        "108": "108 měsíců",
+                        "120": "120 měsíců",
                         "custom": "Vlastní počet měsíců",
                     }
                 ),
-                vol.Optional("history_months", default=current_custom): vol.All(
+                vol.Optional("history_months", default=current): vol.All(
                     int, vol.Range(min=1, max=120)
                 ),
             }
