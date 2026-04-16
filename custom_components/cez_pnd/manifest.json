@@ -6,6 +6,7 @@
   "documentation": "https://github.com/Vulgry/cez_pnd",
   "integration_type": "hub",
   "iot_class": "cloud_polling",
+  "issue_tracker": "https://github.com/Vulgry/cez_pnd/issues",
   "loggers": ["custom_components.cez_pnd"],
   "quality_scale": "silver",
   "requirements": [
