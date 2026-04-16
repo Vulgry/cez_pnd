@@ -10,8 +10,7 @@ Neoficiální integrace pro načítání spotřeby elektroměru z portálu **ČE
 
 ## Instalace přes HACS
 
-[![Open in HACS](https://my.home-assistant.io/badges/hacs_repository.svg)](https://my.home-assistant.io/redirect/hacs_repository/?repository=https://github.com/Vulgry/cez_pnd&category=integration)
-
+<a href="https://my.home-assistant.io/redirect/hacs_repository/?owner=Vulgry&repository=cez_pnd&category=integration" target="_blank" rel="noreferrer noopener"><img src="https://my.home-assistant.io/badges/hacs_repository.svg" alt="Open your Home Assistant instance and open a repository inside the Home Assistant Community Store." /></a>
 Po kliknutí na tlačítko se repozitář otevře přímo v HACS.
 
 ### Postup
