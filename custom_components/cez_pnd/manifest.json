@@ -11,6 +11,5 @@
   "iot_class": "cloud_polling",
   "loggers": ["custom_components.cez_pnd"],
   "integration_type": "hub",
-  "platforms": ["sensor"],
   "quality_scale": "silver"
 }
