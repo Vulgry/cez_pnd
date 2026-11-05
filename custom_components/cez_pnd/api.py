@@ -65,7 +65,9 @@ class CezPndClient:
         r = session.get(PND_START_URL, allow_redirects=True, timeout=30)
         r.raise_for_status()
 
-        if "cas.cez.cz/cas/login" not in r.url:
+        # ČEZ moved the CAS login from cas.cez.cz to mepas.cez.cz,
+        # so match the CAS login path on any host.
+        if "/cas/login" not in r.url:
             return
 
         m = re.search(r'name="execution"\s+value="([^"]+)"', r.text)
